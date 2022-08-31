@@ -8,8 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController extends GetxController
 {
-  TextEditingController emailController=TextEditingController(text: "abhishekedu4979@gmail.com");
-  TextEditingController passwordController=TextEditingController(text: "Abhi@123");
+  TextEditingController emailController=TextEditingController(text: "");
+  TextEditingController passwordController=TextEditingController(text: "");
   late Rx<SharedPreferences> storage;
   RxBool isLoggedIn=RxBool(false);
   String name="";

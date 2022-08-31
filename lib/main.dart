@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
+import 'package:shopify/animations.dart';
 import 'package:shopify/api.dart';
 import 'package:shopify/controller.dart';
 import 'package:shopify/home_screen.dart';
@@ -119,29 +120,31 @@ class _LoginState extends State<Login> {
           alignment: Alignment.bottomCenter,
           child: Padding(
             padding: const EdgeInsets.only(left: 50, right: 50, bottom: 80),
-            child: Container(
-              width: 314,
-              height: 70,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(40)),
-                  boxShadow: [
-                    BoxShadow(
-                        offset: Offset(0, 4),
-                        blurRadius: 4,
-                        color: Color.fromRGBO(0, 0, 0, 0.25))
-                  ]),
-              child: TextButton(
-                  onPressed: () {
-                    showSheet(context);
-                  },
-                  child: Text(
-                    "Get Started",
-                    style: TextStyle(
-                        color: Color.fromRGBO(37, 150, 190, 1),
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20),
-                  )),
+            child: FadeAnimation(
+              1, Container(
+                width: 314,
+                height: 70,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(0, 4),
+                          blurRadius: 4,
+                          color: Color.fromRGBO(0, 0, 0, 0.25))
+                    ]),
+                child: TextButton(
+                    onPressed: () {
+                      showSheet(context);
+                    },
+                    child: Text(
+                      "Get Started",
+                      style: TextStyle(
+                          color: Color.fromRGBO(37, 150, 190, 1),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20),
+                    )),
+              ),
             ),
           ),
         ),
@@ -349,9 +352,8 @@ class _LoginState extends State<Login> {
                                   controller.name=value['user']['name'].toString();
                                   controller.phone=value['user']['mobile_no'].toString();
                                   print("${value['user']['name']} is here");
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-                                    return const HomeScreen();
-                                  }));
+                                  Navigator.pop(context);
+                                  controller.isLoggedIn.value=true;
                                 });
 
                               } catch (e) {

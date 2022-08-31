@@ -31,6 +31,7 @@ controller.storage.value.remove( 'name');
 controller.storage.value.remove( 'email');
 controller.storage.value.remove( 'phone');
 controller.isLoggedIn.value=false;
+
               },
               child: Text(
                 "Log out",
